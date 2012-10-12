@@ -7,7 +7,8 @@ EK.requestAuthorization(function(e) {
 			notes: "Hacking. A lot.",
 			location: "B385 - Foo",
 			begin: "2012-10-05 01:00:00 GMT",
-			end: "2012-10-05 03:00:00 GMT"
+			end: "2012-10-05 03:00:00 GMT",
+			reminder: 10
 		});
 
 		Ti.UI.createAlertDialog({
