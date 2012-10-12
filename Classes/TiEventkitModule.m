@@ -132,6 +132,7 @@
     NSString *location = [TiUtils stringValue:@"location" properties:args def:@""];
     NSString *begin = [TiUtils stringValue:@"begin" properties:args];
     NSString *end = [TiUtils stringValue:@"end" properties:args];
+    int reminder = [TiUtils intValue:@"reminder" properties:args def:0];
     BOOL allDay = [TiUtils boolValue:@"allDay" properties:args def:NO];
     
     // This code is just for Date formatting
@@ -151,6 +152,12 @@
         event.location = location;
         event.notes = notes;
         event.allDay = allDay;
+        
+        if( reminder > 0 ){
+            NSTimeInterval interval = 60* -reminder;
+            EKAlarm *alarm = [EKAlarm alarmWithRelativeOffset:interval];
+            [event addAlarm:alarm];
+        }
         
         BOOL result = [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&err];
         
